@@ -7,8 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum Operacion {
+    case suma
+    case resta
+    case multiplicacion
+    case division
+}
 
+class ViewController: UIViewController {
+    
     @IBOutlet var numeroUnoTextField: UITextField!
     @IBOutlet var numeroDosTextField: UITextField!
     @IBOutlet var resultadoLabel: UILabel!
@@ -17,36 +24,43 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func accionSumar(_ sender: UIButton) {
-        let numeroUno = Int(numeroUnoTextField.text!)!
-        let numeroDos = Int(numeroDosTextField.text!)!
-        let resultado = numeroUno + numeroDos
-        
-        resultadoLabel.text = "\(resultado)"
+        realizarOperacion(operacion: .suma)
     }
     
     @IBAction func accionRestar(_ sender: UIButton) {
-        let numeroUno = Int(numeroUnoTextField.text!)!
-        let numeroDos = Int(numeroDosTextField.text!)!
-        let resultado = numeroUno - numeroDos
-        
-        resultadoLabel.text = "\(resultado)"
+        realizarOperacion(operacion: .resta)
     }
     @IBAction func accionMultiplicar(_ sender: UIButton) {
-        let numeroUno = Int(numeroUnoTextField.text!)!
-        let numeroDos = Int(numeroDosTextField.text!)!
-        let resultado = numeroUno * numeroDos
-        
-        resultadoLabel.text = "\(resultado)"
+        realizarOperacion(operacion: .multiplicacion)
     }
     @IBAction func accionDividir(_ sender: UIButton) {
+        realizarOperacion(operacion: .division)
+    }
+    
+    func  realizarOperacion(operacion: Operacion) {
         let numeroUno = Int(numeroUnoTextField.text!)!
         let numeroDos = Int(numeroDosTextField.text!)!
-        let resultado = numeroUno / numeroDos
         
-        resultadoLabel.text = "\(resultado)"
+        switch operacion {
+        case .suma:
+            let resultado = numeroUno + numeroDos
+            resultadoLabel.text = "\(resultado)"
+            break
+        case .resta:
+            let resultado = numeroUno - numeroDos
+            resultadoLabel.text = "\(resultado)"
+            break
+        case .multiplicacion:
+            let resultado = numeroUno * numeroDos
+            resultadoLabel.text = "\(resultado)"
+            break
+        case .division:
+            let resultado = numeroUno / numeroDos
+            resultadoLabel.text = "\(resultado)"
+            break
+        }
     }
     
 }
-
